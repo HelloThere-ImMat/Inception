@@ -1,0 +1,8 @@
+NGINX 			-> DONE
+MARIADB 		-> Still issue with the script createDb.sh
+WORDPRESS 		-> Finished config but still has to be tested
+
+docker-compose 	-> Finished but still has to be tested
+
+VOLUMES 		->
+

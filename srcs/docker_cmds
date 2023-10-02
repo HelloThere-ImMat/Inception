@@ -1,0 +1,20 @@
+docker built
+	will built the docker image
+-t nginx
+	will name your image nginx
+
+
+docker run
+	will run the docker
+-it
+	will lauch the terminal of your docker machine
+
+docker image ls
+	will display the docker images built
+
+docker ps
+	will display the running docker(s)
+-a
+	will also display the historic of runned docker
+
+	

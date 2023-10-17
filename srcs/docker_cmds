@@ -1,5 +1,6 @@
-docker built
-	will built the docker image
+docker build
+
+	will build the docker image
 -t nginx
 	will name your image nginx
 
@@ -16,5 +17,3 @@ docker ps
 	will display the running docker(s)
 -a
 	will also display the historic of runned docker
-
-	

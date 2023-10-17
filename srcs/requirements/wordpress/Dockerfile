@@ -23,4 +23,3 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 
 COPY ./conf/config_wp.sh .
 ENTRYPOINT [./config_wp.sh]
-

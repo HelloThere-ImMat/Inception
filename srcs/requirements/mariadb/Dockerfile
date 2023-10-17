@@ -2,7 +2,7 @@ FROM debian:bullseye
 
 RUN apt-get update -y
 RUN apt-get upgrade -y
-RUN apt-get install vim -y
+RUN apt-get install apt-utils -y
 RUN apt-get install mariadb-server -y
 
 COPY ./conf/createDb.sh ./etc/createDb.sh

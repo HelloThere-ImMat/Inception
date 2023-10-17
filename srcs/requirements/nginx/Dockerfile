@@ -1,11 +1,11 @@
 FROM debian:bullseye
 
 #upgrade and installation of requirements
-RUN apt update
-RUN apt upgrade -y
-RUN apt install nginx -y
-RUN apt install vim -y
-RUN apt install curl -y
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install nginx -y
+RUN apt-get install vim -y
+RUN apt-get install curl -y
 
 #openSSL
 RUN mkdir /etc/nginx/ssl -p

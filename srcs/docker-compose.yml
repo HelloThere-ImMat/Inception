@@ -1,19 +1,19 @@
-version: ‘3’
+version: '3'
 
 services:
   mariadb:
     image: mariadb
-    container_name: mariadb			    # Le nom du container, oui vraiment.
+    container_name: mariadb
     build:
-      context: ./requirements/mariadb # ou se trouve son Dockerfile
-      dockerfile: Dockerfile			  # le nom du Dockerfile ?!
-    env_file: .env                  # le fichier d'environnement pour transmettre les variables
-    volumes:                        # Voir plus bas
+      context: ./requirements/mariadb
+      dockerfile: Dockerfile
+    env_file: .env
+    volumes:
       - mariadb:/var/lib/mysql
     networks:
-      - inception            			  # à quel network il appartient
-    restart: unless-stopped         # redémarre tant qu'il n'est pas stoppé
-    expose:                         # le port à exposer
+      - inception
+    restart: unless-stopped
+    expose:
       - "3306"
 
   wordpress:
@@ -46,8 +46,8 @@ services:
       - inception
     volumes:
       - wordpress:/var/www/html/wordpress
-    port: "443:443"                   # on indique le port qui sera exposé a la machine locale
-    restart: on_failure               # Ici nous changeons, le container redémarrera uniquement en cas de crash.
+    ports: ["443:443"]
+    restart: on_failure
 
 volumes:
   wordpress:

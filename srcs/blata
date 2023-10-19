@@ -1,4 +1,0 @@
-  File "/usr/lib/python3/dist-packages/docker/api/client.py", line 221, in _retrieve_server_version
-    raise DockerException(
-docker.errors.DockerException: Error while fetching server API version: ('Connection aborted.', PermissionError(13, 'Permission denied'))
-

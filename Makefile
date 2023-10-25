@@ -18,7 +18,7 @@ RM_ALL 				:= docker system prune -af
 
 all:
 	cd $(SRCS); docker-compose build
-	cd $(SRCS); docker-compose up -d
+	cd $(SRCS); docker-compose up
 
 stop:
 	cd $(SRCS); docker-compose down

@@ -2,8 +2,9 @@
 
 if [ -d "/var/lib/mysql/${SQL_DATABASE}" ]
 then
-	echo "Database allready exist"
+	echo "--> ${SQL_DATABASE} allready exist\n"
 else
+	echo "Creating database..."
 	service mariadb start;
 	sleep 5
 	mysql -e "CREATE DATABASE IF NOT EXISTS \`${SQL_DATABASE}\`;"
@@ -17,4 +18,3 @@ else
 fi
 sleep 5
 exec mysqld
-

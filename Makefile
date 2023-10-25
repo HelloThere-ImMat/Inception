@@ -23,9 +23,13 @@ all:
 stop:
 	cd $(SRCS); docker-compose down
 
-clean: stop
+clean: stop clean_volume
 	cd $(NGINX_FOLDER); $(RM_IMG)
+
+clean_volume:
 	cd $(NGINX_FOLDER); $(RM_VOL)
+
+
 
 fclean: clean
 	cd $(NGINX_FOLDER); $(RM_ALL)

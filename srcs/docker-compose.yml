@@ -55,13 +55,15 @@ volumes:
     driver_opts:
       type: 'none'
       o:  'bind'
-      device: '/home/${USER}/Documents/db'
+      # device: '~/Desktop/CODE/42/c.5/InceptionVolumes/wp'
+      device: '/home/${USER}/Documents/wp'
   mariadb:
     driver: local
     driver_opts:
       type: 'none'
       o:  'bind'
-      device: '/home/${USER}/Documents/wp'
+      # device: '~/Desktop/CODE/42/c.5/InceptionVolumes/db'
+      device: '/home/${USER}/Documents/db'
 
 
 

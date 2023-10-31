@@ -1,3 +1,32 @@
 ERROR 1064 (42000) at line 1: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
 ERROR 1064 (42000) at line 1: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '* TO ''@'%' IDENTIFIED BY ''' at line 1
 
+
+
+
+
+
+
+
+
+
+
+
+
+mariadb      | Creating database...
+mariadb      | Starting MariaDB database server: mariadbd.
+mariadb      | ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
+mariadb      | ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
+mariadb      | MAT : Database created
+mariadb      | ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
+mariadb      | MAT : First user created
+mariadb      | ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
+mariadb      | MAT : Privileges granted on first user
+mariadb      | ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
+mariadb      | MAT : Privileges granted on root user
+mariadb      | ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
+mariadb      | mysqladmin: connect to server at 'localhost' failed
+mariadb      | error: 'Access denied for user 'root'@'localhost' (using password: YES)'
+mariadb      | 2023-10-31 14:35:30 0 [Note] Starting MariaDB 10.5.21-MariaDB-0+deb11u1 source revision bed70468ea08c2820647f5e3ac006a9ff88144ac as process 1
+mariadb      | 2023-10-31 14:35:30 0 [ERROR] mysqld: Can't lock aria control file '/var/lib/mysql/aria_log_control' for exclusive use, error: 11. Will retry for 30 seconds
+

@@ -5,6 +5,8 @@ RUN apt-get upgrade -y
 RUN apt-get install apt-utils -y
 RUN apt-get install mariadb-server -y
 
+RUN mkdir -p var/run/mysqld && chown -R mysql:mysql /var/run/mysqld && chmod 755 /var/run/mysqld
+
 COPY ./conf/createDb.sh ./etc/createDb.sh
 RUN	chmod +x ./etc/createDb.sh
 

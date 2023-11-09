@@ -10,12 +10,12 @@ RUN apt-get install -y php7.4 \
 						php-fpm \
 						php-mysql \
 						mariadb-client
-RUN mkdir -p /var/www /run/php
+RUN mkdir -p /var/www/html /run/php
 RUN wget https://fr.wordpress.org/wordpress-6.0-fr_FR.tar.gz -P /var/www
 RUN cd /var/www && tar -xvf wordpress-6.0-fr_FR.tar.gz
 RUN rm /var/www/wordpress-6.0-fr_FR.tar.gz
 
-RUN	chown -R root:root /var/www/wordpress
+RUN	chown -R root:root /var/www/html
 
 COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
@@ -28,6 +28,6 @@ RUN chmod 755 /etc/php/7.4/fpm/pool.d/www.conf
 COPY ./conf/config_wp.sh /usr/local/bin/config_wp.sh
 RUN chmod 755 /usr/local/bin/config_wp.sh
 
-WORKDIR /var/www
+WORKDIR /var/www/html
 
 ENTRYPOINT ["sh", "/usr/local/bin/config_wp.sh"]

@@ -27,6 +27,7 @@ clean: clean_volume
 	cd $(NGINX_FOLDER); $(RM_IMG)
 
 clean_volume: stop
+	sudo rm -rf ~/data/wordpress/* ~/data/mariadb/*
 	cd $(NGINX_FOLDER); $(RM_VOL)
 
 

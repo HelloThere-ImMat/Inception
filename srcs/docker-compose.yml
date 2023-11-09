@@ -2,71 +2,65 @@ version: '3'
 
 services:
   mariadb:
-    image: mariadb
     container_name: mariadb
-    build:
-      context: ./requirements/mariadb
-      dockerfile: Dockerfile
-    env_file: .env
+    image: mariadb
+    build: requirements/mariadb/
     volumes:
-      - mariadb:/var/lib/mysql
+      - mariadb:/var/lib/mysql/
     networks:
       - inception
-    restart: unless-stopped
     expose:
       - "3306"
-
-  wordpress:
-    image: wordpress
-    container_name: wordpress
-    build:
-      context:  requirements/nginx
-      dockerfile: Dockerfile
     env_file: .env
-    networks:
-      - inception
-    volumes:
-      - wordpress:/var/www/html/wordpress
-    depends_on:
-      - mariadb
-    expose:
-      - "9000"
     restart: on-failure
-
+  
   nginx:
-    image: nginx
     container_name: nginx
-    build:
-      context:  requirements/nginx
-      dockerfile: Dockerfile
-    env_file: .env
+    image: nginx
     depends_on:
       - wordpress
+    build: 
+      context: requirements/nginx/
+    volumes:
+      - wordpress:/var/www/html/
     networks:
       - inception
-    volumes:
-      - wordpress:/var/www/html/wordpress
-    ports: ["443:443"]
+    ports:
+      - "443:443"
+    env_file: .env
     restart: on-failure
 
+  wordpress:
+    container_name: wordpress
+    image: wordpress
+    depends_on:
+      - mariadb
+    build: requirements/wordpress/
+    volumes:
+      - wordpress:/var/www/html/
+    networks:
+      - inception
+    restart: on-failure
+    expose:
+      - "9000"
+    env_file: .env
+  
 volumes:
   wordpress:
+    name: wordpress
     driver: local
     driver_opts:
       type: 'none'
-      o:  'bind'
-      # device: '~/Desktop/CODE/42/c.5/InceptionVolumes/wp'
-      device: '/home/${USER}/Documents/wp'
+      o: bind
+      device: '/home/mat/data/wordpress'
+  
   mariadb:
+    name: mariadb
     driver: local
     driver_opts:
       type: 'none'
-      o:  'bind'
-      # device: '~/Desktop/CODE/42/c.5/InceptionVolumes/db'
-      device: '/home/${USER}/Documents/db'
-
-
-
+      o: bind
+      device: '/home/mat/data/mariadb'
 
 networks:
   inception:

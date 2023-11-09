@@ -21,7 +21,13 @@ mariadb      | 2023-11-08 13:43:58 0 [ERROR] mysqld: Can't lock aria control fil
 
 
 
-
+wordpress    | Success: WordPress downloaded.
+wordpress    | PHP Warning:  file_get_contents(phar://wp-cli.phar/vendor/wp-cli/wp-cli/templates/phar://usr/local/bin/wp/vendor/wp-cli/config-command/templates/wp-config.mustache): failed to open stream: phar error: "vendor/wp-cli/wp-cli/templates/phar:/usr/local/bin/wp/vendor/wp-cli/config-command/templates/wp-config.mustache" is not a file in phar "wp-cli.phar" in phar:///usr/local/bin/wp/vendor/wp-cli/wp-cli/php/utils.php on line 608
+wordpress    | Error: Could not create new 'wp-config.php' file.
+wordpress    | Error: Strange wp-config.php file: wp-settings.php is not loaded directly.
+wordpress    | Error: Strange wp-config.php file: wp-settings.php is not loaded directly.
+wordpress    | [09-Nov-2023 13:09:55] ERROR: Unable to create the PID file (/run/php/php7.4-fpm.pid).: No such file or directory (2)
+wordpress    | [09-Nov-2023 13:09:55] ERROR: FPM initialization failed
 
 
 

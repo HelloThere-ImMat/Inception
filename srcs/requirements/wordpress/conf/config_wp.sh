@@ -1,40 +1,31 @@
-#!/bin/bash
+#!/bin/sh
 
-lock_file="/var/www/html/.setup_complete"
+sleep 5
 
-if [ ! -f "$lock_file" ]; then
-	sleep 10
-    echo "config does not exist. Performing actions..."
-	wp core download --allow-root
-	wp config create	--allow-root \
-						--skip-check \
-						--dbname=$SQL_DATABASE \
-						--dbuser=$SQL_USER \
-						--dbpass=$SQL_PASSWORD \
-						--dbhost=mariadb:3306 --path='/var/www/wordpress'
-    echo "Actions completed."
-	until wp db check --path=/var/www/html --quiet --allow-root; do
-        echo "Waiting for MySQL..."
-        sleep 1
-    done
-	wp core install		--url="mdorr.42.fr" \
-						--title="batsite" \
-						--admin_user=$WP_ADMIN_USER \
-						--admin_password=$WP_ADMIN_PASSWORD \
-						--admin_email=$WP_ADMIN_EMAIL \
-						--allow-root
-	wp user create 		$WP_SUBSCRIBER_USER $WP_SUBSCRIBER_EMAIL \
-						--role=subscriber \
-						--user_pass=$WP_SUBSCRIBER_PASSWORD \
-						--allow-root
-	echo "Wordpress setup complete"
-	touch $lock_file
+    echo "\n==============================="
+    echo "=== Wordpress configuration ==="
+    echo "===============================\n"
+
+if [ -f "/var/www/html/wp-config.php" ]
+then
+    echo "==> wordpress is already installed and configured\n"
 else
-    echo "config already exists. No actions needed."
+    wp core download --allow-root
+    wp core config  --allow-root \
+                    --dbname=$SQL_DATABASE \
+                    --dbuser=$SQL_USER \
+                    --dbpass=$SQL_PASSWORD \
+                    --dbhost=mariadb:3306
+    wp core install --allow-root\
+                    --url="mdorr.42.fr"\
+                    --title="batsite"\
+                    --admin_user=$WP_ADMIN_USER\
+                    --admin_password=$WP_ADMIN_PASSWORD\
+                    --admin_email=$WP_ADMIN_EMAIL
+   wp user create $WP_SUSCRIBER_USER $WP_SUSCRIBER_EMAIL\
+                    --role=suscriber\
+                    --user_pass=$WP_SUBSCRIBER_PASSWORD\
+                    --allow-root
 fi
 
-if [! -f "/run/php"]; then
-	mkdir -p /run/php
-fi
-
-exec /usr/sbin/php-fpm7.3 -F
+exec /usr/sbin/php-fpm7.4 -F

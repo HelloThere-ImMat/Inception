@@ -1,42 +1,24 @@
-SHELL=/bin/bash
+all : build up
 
-## FOLDERS ##
+build : volumes
+	docker compose -f srcs/docker-compose.yml build
 
-SRCS				+= srcs/
-REQ_DIR 			+= $(SRCS)/requirements/
+up :
+	docker compose -f srcs/docker-compose.yml up
 
-MARIADB_DIR			= $(REQ_DIR)/mariadb/
-NGINX_DIR			= $(REQ_DIR)/nginx/
-TOOLS_DIR			= $(REQ_DIR)/tools/
-WORDPRESS_DIR		= $(REQ_DIR)/wordpress/
+down :
+	docker compose -f srcs/docker-compose.yml down
 
-## IMAGES ##
+volumes :
+	mkdir -p ~/data/mariadb  ~/data/wordpress
 
-RM_IMG 				:= if [ "$$(docker images -q)" ]; then docker rmi $$(docker images -q) -f; fi
-RM_VOL 				:= if [ "$$(docker volume ls -q)" ]; then docker volume rm $$(docker volume ls -q); fi
-RM_ALL 				:= docker system prune -af
+clean_volumes: down
+	docker volume rm mariadb wordpress
+	sudo rm -rf ~/data/mariadb ~/data/wordpress
 
-all:
-	cd $(SRCS); docker-compose build
-	cd $(SRCS); docker-compose up
+clean : down
+	docker system prune -af
 
-stop:
-	cd $(SRCS); docker-compose down
+fclean : clean clean_volumes
 
-clean: clean_volume
-	cd $(NGINX_FOLDER); $(RM_IMG)
-
-clean_volume: stop
-	sudo rm -rf ~/data/wordpress/* ~/data/mariadb/*
-	cd $(NGINX_FOLDER); $(RM_VOL)
-
-
-
-fclean: clean
-	cd $(NGINX_FOLDER); $(RM_ALL)
-
-re: fclean
-	$(MAKE)
-
-.SILENT:
-.PHONY:
+re: fclean all

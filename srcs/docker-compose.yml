@@ -45,6 +45,19 @@ services:
       - "9000"
     env_file: .env
 
+  redis:
+    container_name: redis
+    image: redis
+    depends_on:
+      - mariadb
+    build: requirements/bonus/redis/
+    networks:
+      - inception
+    retart: on-failure
+    expose:
+      - "6379"
+    env_file: .env
+
 volumes:
   wordpress:
     name: wordpress

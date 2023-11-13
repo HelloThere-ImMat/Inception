@@ -50,6 +50,7 @@ services:
     image: redis
     depends_on:
       - mariadb
+      - wordpress
     build: requirements/bonus/redis/
     networks:
       - inception

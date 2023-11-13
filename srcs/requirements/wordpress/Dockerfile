@@ -26,6 +26,7 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 RUN chmod 755 /etc/php/7.4/fpm/pool.d/www.conf
 
 COPY ./conf/config_wp.sh /usr/local/bin/config_wp.sh
+COPY ./conf/wp-config.php /var/www/html/wordpress/wp-config.php
 RUN chmod 755 /usr/local/bin/config_wp.sh
 
 WORKDIR /var/www/html

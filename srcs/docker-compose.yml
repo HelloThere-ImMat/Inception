@@ -58,6 +58,15 @@ services:
       - "6379"
     env_file: .env
 
+  adminer:
+    container_name: adminer
+    image: adminer
+    depends_on:
+      - mariadb
+    build: requirement/bonus/adminer
+    networks:
+      - inception
+
 volumes:
   wordpress:
     name: wordpress

@@ -10,4 +10,4 @@ RUN	chmod +x /etc/entrypoint.sh
 
 EXPOSE 6379
 
-ENTRYPOINT ["sh", "/etc/entrypoint.sh"]
+ENTRYPOINT ["redis-server", "--protected-mode",  "no"]

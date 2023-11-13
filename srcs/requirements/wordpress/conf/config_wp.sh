@@ -28,6 +28,17 @@ else
                     --allow-root
 fi
 
+echo "\n==========================="
+    echo "=== Redis configuration ==="
+    echo "===========================\n"
+
+    wp config set WP_CACHE true --add --allow-root
+    wp config set WP_CACHE_KEY_SALT lletourn.42.fr --allow-root
+    wp config set WP_REDIS_HOST redis --allow-root
+    wp plugin install redis-cache --activate --allow-root
+    wp plugin update --all --allow-root
+    wp redis enable --allow-root
+
 echo "ALL DONE"
 
 exec /usr/sbin/php-fpm7.4 -F

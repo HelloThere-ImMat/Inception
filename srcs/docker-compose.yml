@@ -64,7 +64,7 @@ services:
     depends_on:
       - mariadb
       - wordpress
-    build: requirement/bonus/adminer
+    build: requirements/bonus/adminer
     networks:
       - inception
     expose:

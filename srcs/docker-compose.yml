@@ -57,6 +57,7 @@ services:
     expose:
       - "6379"
     env_file: .env
+    restart: on-failure
 
   adminer:
     container_name: adminer
@@ -71,6 +72,7 @@ services:
       - "9000"
     environment:
       ADMINER_DEFAULT_SERVER: mariadb
+    restart: on-failure
 
 volumes:
   wordpress:

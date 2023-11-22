@@ -73,15 +73,15 @@ services:
       ADMINER_DEFAULT_SERVER: mariadb
     restart: on-failure
 
-  ai:
-    networks:
-      - inception
-    container_name: ai
-    image: ftp
-    build: requirements/bonus/AiChatBot
-    expose:
-      - "5000"
-    restart: on-failure
+  #ai:
+  #  networks:
+  #    - inception
+  #  container_name: ai
+  #  image: ai
+  #  build: requirements/bonus/AiChatBot
+  #  expose:
+  #    - "5000"
+  #  restart: on-failure
 
   #ftp:
   #  networks:

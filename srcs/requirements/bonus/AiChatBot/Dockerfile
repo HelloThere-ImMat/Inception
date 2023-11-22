@@ -12,5 +12,5 @@ COPY app.py /app/app.py
 
 EXPOSE 5000
 
-CMD ["python3", "/app/app.py"]
+#CMD ["python3", "/app/app.py"]
 

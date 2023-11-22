@@ -1,6 +1,7 @@
 import openai
 
 from flask import Flask, render_template, request
+from werkzeug.urls import url_quote
 import openai
 
 app = Flask(__name__)
@@ -11,16 +12,14 @@ def index():
     return render_template('index.html')
 
 @app.route('/generate', methods=['POST'])
-# def generate():
+def generate():
 #     user_input = request.form['user-input']
 #     response = openai.Completion.create(
 #         engine="text-davinci-003",
 #         prompt=user_input,
 #         max_tokens=150
 #     )
-
-    # generated_text = response.choices[0].text.strip()
-
+#     generated_text = response.choices[0].text.strip()
 	generated_text = "bonjour"
 	return render_template('index.html', output=generated_text)
 

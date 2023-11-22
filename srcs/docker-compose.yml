@@ -73,6 +73,16 @@ services:
       ADMINER_DEFAULT_SERVER: mariadb
     restart: on-failure
 
+  ai:
+    networks:
+      - inception
+    container_name: ai
+    image: ftp
+    build: requirements/bonus/AiChatBot
+    expose:
+      - "5000"
+    restart: on-failure
+
   #ftp:
   #  networks:
   #    - inception
@@ -89,6 +99,8 @@ services:
   #      - "0.0.0.0:20:20"
   #      - "0.0.0.0:40000-40100:40000-40100"
   #  restart: on-failure
+
+
 
 volumes:
   wordpress:

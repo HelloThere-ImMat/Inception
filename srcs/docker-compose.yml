@@ -2,76 +2,92 @@ version: '3'
 
 services:
   mariadb:
+    networks:
+      - inception
     container_name: mariadb
     image: mariadb
     build: requirements/mariadb/
+    env_file: .env
     volumes:
       - mariadb:/var/lib/mysql/
-    networks:
-      - inception
     expose:
       - "3306"
-    env_file: .env
     restart: on-failure
 
   nginx:
+    networks:
+      - inception
     container_name: nginx
     image: nginx
     depends_on:
       - wordpress
-    build:
-      context: requirements/nginx/
+    build: requirements/nginx/
+    env_file: .env
     volumes:
       - wordpress:/var/www/html/
-    networks:
-      - inception
     ports:
       - "443:443"
-    env_file: .env
     restart: on-failure
 
   wordpress:
+    networks:
+      - inception
     container_name: wordpress
     image: wordpress
     depends_on:
       - mariadb
     build: requirements/wordpress/
+    env_file: .env
     volumes:
       - wordpress:/var/www/html/
-    networks:
-      - inception
     restart: on-failure
     expose:
       - "9000"
-    env_file: .env
 
   redis:
+    networks:
+      - inception
     container_name: redis
     image: redis
     depends_on:
       - mariadb
       - wordpress
     build: requirements/bonus/redis/
-    networks:
-      - inception
+    env_file: .env
     expose:
       - "6379"
-    env_file: .env
     restart: on-failure
 
   adminer:
+    networks:
+      - inception
     container_name: adminer
     image: adminer
     depends_on:
       - mariadb
       - wordpress
     build: requirements/bonus/adminer
-    networks:
-      - inception
     expose:
       - "9000"
     environment:
       ADMINER_DEFAULT_SERVER: mariadb
+    restart: on-failure
+
+  ftp:
+    networks:
+      - inception
+    container_name: ftp
+    image: ftp
+    depends_on:
+      - wordpress
+    build: requirements/bonus/ftp
+    env_file: .env
+    volumes:
+      - wordpress:/var/www/html/
+    ports:
+        - "0.0.0.0:21:21"
+        - "0.0.0.0:20:20"
+        - "0.0.0.0:40000-40100:40000-40100"
     restart: on-failure
 
 volumes:

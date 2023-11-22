@@ -73,22 +73,22 @@ services:
       ADMINER_DEFAULT_SERVER: mariadb
     restart: on-failure
 
-  ftp:
-    networks:
-      - inception
-    container_name: ftp
-    image: ftp
-    depends_on:
-      - wordpress
-    build: requirements/bonus/ftp
-    env_file: .env
-    volumes:
-      - wordpress:/var/www/html/
-    ports:
-        - "0.0.0.0:21:21"
-        - "0.0.0.0:20:20"
-        - "0.0.0.0:40000-40100:40000-40100"
-    restart: on-failure
+  #ftp:
+  #  networks:
+  #    - inception
+  #  container_name: ftp
+  #  image: ftp
+  #  depends_on:
+  #    - wordpress
+  #  build: requirements/bonus/ftp
+  #  env_file: .env
+  #  volumes:
+  #    - wordpress:/var/www/html/
+  #  ports:
+  #      - "0.0.0.0:21:21"
+  #      - "0.0.0.0:20:20"
+  #      - "0.0.0.0:40000-40100:40000-40100"
+  #  restart: on-failure
 
 volumes:
   wordpress:

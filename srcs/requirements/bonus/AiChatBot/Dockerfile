@@ -1,16 +1,15 @@
 FROM debian:bullseye
 
 RUN mkdir /app
+WORKDIR /app
 
-COPY requirements.txt /app/requirements.txt
+RUN	apt update && apt install -y nodejs npm
+RUN npm install axios
+RUN npm install node-fetch@2
 
-RUN apt update
-RUN apt install python3 python3-pip -y
-RUN pip install --no-cache-dir -r /app/requirements.txt
+COPY ./index.html /app
+COPY ./site.js /app
 
-COPY app.py /app/app.py
+CMD ["node", "/app/site.js"]
 
-EXPOSE 5000
-
-#CMD ["python3", "/app/app.py"]
 

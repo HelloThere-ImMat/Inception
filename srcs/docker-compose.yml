@@ -73,32 +73,37 @@ services:
       ADMINER_DEFAULT_SERVER: mariadb
     restart: on-failure
 
-  #ai:
-  #  networks:
-  #    - inception
-  #  container_name: ai
-  #  image: ai
-  #  build: requirements/bonus/AiChatBot
-  #  expose:
-  #    - "5000"
-  #  restart: on-failure
+  ai:
+    networks:
+      - inception
+    container_name: ai
+    image: ai
+    build: requirements/bonus/AiChatBot
+    env_file: .env
+    volumes:
+      - wordpress:/var/www/html
+    expose:
+      - "8000"
+    ports:
+      - "8000:8000"
+    restart: on-failure
 
-  #ftp:
-  #  networks:
-  #    - inception
-  #  container_name: ftp
-  #  image: ftp
-  #  depends_on:
-  #    - wordpress
-  #  build: requirements/bonus/ftp
-  #  env_file: .env
-  #  volumes:
-  #    - wordpress:/var/www/html/
-  #  ports:
-  #      - "0.0.0.0:21:21"
-  #      - "0.0.0.0:20:20"
-  #      - "0.0.0.0:40000-40100:40000-40100"
-  #  restart: on-failure
+  ftp:
+    networks:
+      - inception
+    container_name: ftp
+    image: ftp
+    depends_on:
+      - wordpress
+    build: requirements/bonus/ftp
+    env_file: .env
+    volumes:
+      - wordpress:/var/www/html/
+    ports:
+        - "0.0.0.0:21:21"
+        - "0.0.0.0:20:20"
+        - "0.0.0.0:40000-40100:40000-40100"
+    restart: on-failure
 
 
 

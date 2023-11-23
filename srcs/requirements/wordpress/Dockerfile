@@ -30,4 +30,6 @@ RUN chmod 755 /usr/local/bin/config_wp.sh
 
 WORKDIR /var/www/html
 
+RUN touch blata
+
 ENTRYPOINT ["sh", "/usr/local/bin/config_wp.sh"]

@@ -1,0 +1,125 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>The Dungeon Master</title>
+		<!-- Link the CSS file -->
+		<!--<link rel="stylesheet" type="text/css" href="styles.css">-->
+		<!--Link for the google font-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Rubik+Maze&display=swap" rel="stylesheet">
+		<!-- Link the JavaScript file -->
+		<!--<script src="api.js" defer></script>-->
+		<style>
+			body {
+			background-color: 123965;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh; /*Ensure the container takes the full height of the viewport */
+			margin: 0;
+			}
+
+			h1 {
+			text-align: center;
+			font-family: 'Rubik Maze';
+			font-size: 6em;
+			color: white;
+			}
+
+			form {
+			text-align: center;
+			}
+
+			button {
+			border: none;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			}
+
+			.riddle-button {
+			background-color: whitesmoke;
+			color: 123965;
+			padding: 10px 15px;
+			border-radius: 20px;
+			}
+			.answer-button {
+			background-color: 0b7fbd;
+			padding: 8px 12px;
+			border-radius: 12px;
+			color: white;
+			}
+
+			#output {
+			margin-top: 20px;
+			font-weight: bold;
+			color: white;
+			}
+
+			#riddle-container {
+			padding: 12px;
+			color : white;
+			font-family: 'Helvetica', sans-serif;
+			}
+
+			#answer-container {
+			padding: 12px;
+			color : 0b7fbd;
+			font-family: 'Helvetica', sans-serif;
+			}
+		</style>
+		<script>
+			function getRandomValue() {
+			// Generate a random decimal between 0 (inclusive) and 1 (exclusive)
+			const randomDecimal = Math.random();
+
+			// Scale the random decimal to the desired range (0 to 5 in this case)
+			const randomValue = Math.floor(randomDecimal * 6); // Multiply by 6 to include 5 in the possibilities
+
+			return randomValue;
+			}
+
+			function getAnswer(enigmaIndex) {
+			const answerContainer = document.getElementById('answer-container');
+
+			const answerTab = ['La lettre E', 'Une énigme', 'L\'eau', 'Un cerceuil', 'Il a léché la pièce, pas l\'épée.',
+			'3 sacs dans un plateau, 3 sacs dans l\'autre, et 3 sacs au sol. <br>On élimine ainsi 6 sacs. <br>1 un sac dans un plateau, 1 sac dans l\'autre, et 1 sac au sol. <br>On détermine alors le sac qui contient les fausses pièces.'];
+
+			answerContainer.innerHTML = answerTab[enigmaIndex];
+			}
+
+			function getRiddle() {
+			const riddleContainer = document.getElementById('riddle-container');
+			const helpButtonContainer = document.getElementById('help-button');
+			const answerContainer = document.getElementById('answer-container');
+
+			const enigmaIndex = getRandomValue();
+
+			const riddleTab = ['Je suis le commencement de l’effroi, <br>La fin de la durée et de l’espace, <br>Le commencement de toutes extrémités, <br>Et la fin de chaque contrée.',
+			'Si cela cache, ce n\'est que pour mieux révéler. <br>Cela bloque autant que cela permet de passer. <br>La réponse est dans la question. <br>Que suis-je ?',
+			'Je suis vague en bord de mer. <br>Je descends des montagnes en hiver. <br>Sans moi vous n\'aurez plus une larme.',
+			'Celui qui le fabrique le vend, celui qui l\'achète ne s\'en sert pas, celui qui s\'en sert ne le sais pas. <br>Qu\'est-ce ?',
+			'Un forgeron tient une épée incandescente avec une pince. <br>Un magicien apparaît et lui dit: "Si tu me donnes 1 pièce d\'or, je la lèche". <br>Le forgeron lui donne alors une pièce, et le magicien s\'exécute sans se brûler. <br>Comment a-t-il fait ?',
+			'9 sac de pièces d\'or. Un sac avec de fausses pièces plus légères. <br>Une balance à plateau et seules 2 pesées autorisées. <br>Quel sac contient les fausses pièces ?'];
+
+			riddleContainer.innerHTML = riddleTab[enigmaIndex];
+
+			answerContainer.innerHTML = '';
+
+			helpButtonContainer.innerHTML = '<button class=\'answer-button\' onclick=getAnswer(' + enigmaIndex + ')>?</button>';
+			}
+		</script>
+	</head>
+	<body>
+		<h1>The Dungeon Master</h1>
+		<div></div>
+		<div></div>
+		<button class="riddle-button" onclick="getRiddle()">What is the riddle ?</button>
+		<div id="riddle-container"></div>
+		<div id="help-button"></div>
+		<div id="answer-container"></div>
+	</body>
+</html>

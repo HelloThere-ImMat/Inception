@@ -73,15 +73,13 @@ services:
       ADMINER_DEFAULT_SERVER: mariadb
     restart: on-failure
 
-  ai:
+  nodejs:
     networks:
       - inception
-    container_name: ai
-    image: ai
-    build: requirements/bonus/AiChatBot
+    container_name: nodejs
+    image: nodejs
+    build: requirements/bonus/nodejs
     env_file: .env
-    volumes:
-      - wordpress:/var/www/html
     expose:
       - "8000"
     ports:

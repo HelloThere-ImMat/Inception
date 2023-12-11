@@ -10,7 +10,7 @@ down :
 	docker compose -f srcs/docker-compose.yml down
 
 volumes :
-	mkdir -p ~/data/mariadb  ~/data/wordpress ~/data/aichatbot
+	mkdir -p ~/data/mariadb  ~/data/wordpress
 
 clean_volumes: down
 	docker volume rm mariadb wordpress
